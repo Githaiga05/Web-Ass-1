@@ -1,0 +1,318 @@
+/* =====================================================
+   Savanna Brew Café - Main Stylesheet
+   Sections:
+   1. Variables   2. Base/Reset   3. Layout helpers
+   4. Header & Nav   5. Buttons   6. Home   7. About
+   8. Menu tables   9. Gallery   10. Contact form
+   11. Footer   12. Animation   13. Dark mode
+   14. Responsive (max-width: 768px)
+   ===================================================== */
+
+/* ---------- 1. VARIABLES (brand palette) ---------- */
+:root {
+  --brown: #6F4E37;
+  --cream: #F5E9DA;
+  --orange: #D9822B;
+  --dark: #2B1B12;
+  --white: #FFFFFF;
+  --font-heading: "Playfair Display", Georgia, serif;
+  --font-body: "Open Sans", Arial, sans-serif;
+  --radius: 10px;
+  --shadow: 0 4px 12px rgba(43, 27, 18, 0.15);
+}
+
+/* ---------- 2. BASE / RESET ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 1rem;          /* 16px */
+  line-height: 1.6;         /* at least 1.5 */
+  color: var(--dark);
+  background-color: var(--cream);
+}
+
+img { max-width: 100%; height: auto; display: block; }
+
+h1, h2, h3 {
+  font-family: var(--font-heading);
+  color: var(--brown);
+  line-height: 1.25;
+}
+
+a { color: var(--brown); transition: color 0.3s ease; }
+a:hover, a:focus { color: var(--orange); }
+a:focus-visible, button:focus-visible { outline: 3px solid var(--orange); outline-offset: 2px; }
+
+/* ---------- 3. LAYOUT HELPERS ---------- */
+.container { width: 100%; max-width: 1100px; margin: 0 auto; padding: 0 1.25rem; }
+.section { padding-top: 2.5rem; padding-bottom: 2.5rem; }
+.center { text-align: center; }
+
+/* ---------- 4. HEADER & NAVIGATION ---------- */
+.site-header { background-color: var(--brown); }
+
+/* Flexbox: logo left, nav right */
+.header-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+}
+.logo { width: 200px; height: auto; }
+
+.nav-list {
+  display: flex;
+  gap: 0.5rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.nav-list a {
+  display: block;
+  padding: 0.5rem 1rem;
+  color: var(--white);
+  text-decoration: none;
+  border-radius: 6px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+.nav-list a:hover,
+.nav-list a:focus { background-color: var(--orange); color: var(--white); }
+/* Highlight for the current page */
+.nav-list a.active { background-color: var(--orange); color: var(--white); font-weight: 600; }
+
+/* ---------- 5. BUTTONS ---------- */
+.btn {
+  display: inline-block;
+  padding: 0.75rem 1.75rem;
+  background-color: var(--orange);
+  color: var(--white);
+  border: none;
+  border-radius: var(--radius);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+.btn:hover, .btn:focus { background-color: var(--brown); color: var(--white); transform: translateY(-2px); }
+.btn-light { background-color: var(--white); color: var(--brown); }
+.btn-light:hover, .btn-light:focus { background-color: var(--dark); color: var(--white); }
+
+/* ---------- 6. HOME ---------- */
+.hero {
+  min-height: 460px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: linear-gradient(rgba(43,27,18,0.55), rgba(43,27,18,0.55)), url("../images/hero.jpg") center / cover no-repeat;
+  color: var(--white);
+  padding: 2rem 1.25rem;
+}
+.hero h1 { color: var(--white); font-size: 3rem; margin: 0 0 0.5rem; }
+.tagline { font-size: 1.35rem; margin: 0 0 1.5rem; }
+.hero-content { animation: fadeUp 1.2s ease both; }
+
+.welcome { max-width: 800px; text-align: center; }
+
+/* Flexbox: three equal-width cards */
+.cards { display: flex; gap: 1.5rem; margin-top: 1.5rem; }
+.card {
+  flex: 1;
+  background-color: var(--white);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.card:hover { transform: translateY(-8px); box-shadow: 0 12px 24px rgba(43,27,18,0.25); }
+.card img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
+.card-body { padding: 1rem 1.25rem 1.25rem; }
+.card-body h3 { margin: 0 0 0.5rem; }
+.card-body p { margin: 0; }
+
+.cta-band { background-color: var(--brown); color: var(--white); padding: 3rem 0; }
+.cta-band h2 { color: var(--white); margin-top: 0; }
+
+/* ---------- 7. ABOUT ---------- */
+.two-col { display: flex; gap: 2.5rem; align-items: center; }
+.two-col > img, .two-col > article { flex: 1; }
+.round-img {
+  border-radius: 50%;        /* rounded owner image */
+  max-width: 380px;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  box-shadow: var(--shadow);
+}
+blockquote {
+  margin: 1.5rem 0 0;
+  padding: 1rem 1.25rem;
+  border-left: 5px solid var(--orange);
+  background-color: var(--white);
+  font-style: italic;
+  border-radius: 0 var(--radius) var(--radius) 0;
+}
+blockquote cite { display: block; margin-top: 0.5rem; font-style: normal; font-weight: 600; color: var(--brown); }
+
+.values-list { padding-left: 1.25rem; }
+.values-list li { margin-bottom: 0.75rem; }
+
+/* ---------- 8. MENU TABLES ---------- */
+.table-wrapper { overflow-x: auto; }   /* horizontal scroll on small screens */
+.menu-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: var(--white);
+  box-shadow: var(--shadow);
+}
+.menu-table th, .menu-table td { padding: 0.75rem 1rem; text-align: left; }
+.menu-table thead th { background-color: var(--brown); color: var(--white); }
+.menu-table tbody tr:nth-child(even) { background-color: var(--cream); }   /* zebra stripes */
+.menu-table tbody tr { transition: background-color 0.3s ease; }
+.menu-table tbody tr:hover { background-color: #EBCFA8; }                  /* row hover */
+.menu-table .price { text-align: right; white-space: nowrap; }
+
+/* ---------- 9. GALLERY ---------- */
+/* CSS Grid: 4 columns on desktop, 2 on tablet, 1 on mobile */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+.gallery-grid figure {
+  margin: 0;
+  overflow: hidden;
+  background-color: var(--white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+.gallery-grid img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;          /* fill cell with no distortion */
+  transition: transform 0.4s ease;
+}
+.gallery-grid figure:hover img { transform: scale(1.1); }   /* zoom on hover */
+.gallery-grid figcaption { padding: 0.5rem 0.75rem; font-size: 0.95rem; }
+
+/* ---------- 10. CONTACT FORM ---------- */
+.contact-layout { display: flex; gap: 2.5rem; align-items: flex-start; }
+.form-column { flex: 3; }
+.info-column { flex: 2; }
+
+.form-group { margin-bottom: 1rem; }
+.form-row { display: flex; gap: 1rem; }
+.form-row .form-group { flex: 1; }
+
+label { display: block; margin-bottom: 0.35rem; font-weight: 600; }
+input[type="text"], input[type="email"], input[type="tel"],
+input[type="date"], input[type="time"], select, textarea {
+  width: 100%;
+  padding: 0.65rem 0.75rem;
+  border: 2px solid var(--brown);
+  border-radius: 6px;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  background-color: var(--white);
+  color: var(--dark);
+}
+input:focus, select:focus, textarea:focus {
+  outline: 3px solid var(--orange);
+  outline-offset: 1px;
+  border-color: var(--orange);
+}
+fieldset { border: 2px solid var(--brown); border-radius: 6px; margin: 0 0 1rem; padding: 0.5rem 1rem 0.75rem; }
+legend { font-weight: 600; padding: 0 0.5rem; color: var(--brown); }
+.radio-label { display: inline-block; margin-right: 1.25rem; font-weight: 400; }
+.radio-label input { accent-color: var(--orange); }
+address { font-style: normal; }
+
+/* ---------- 11. FOOTER ---------- */
+.site-footer { background-color: var(--dark); color: var(--cream); padding-top: 2rem; }
+.site-footer h2 { color: var(--orange); font-size: 1.2rem; margin-top: 0; }
+.site-footer a { color: var(--cream); }
+.site-footer a:hover, .site-footer a:focus { color: var(--orange); }
+.footer-columns { display: flex; gap: 2rem; }
+.footer-columns section { flex: 1; }
+.social-list { list-style: none; padding: 0; margin: 0; }
+.copyright { text-align: center; margin: 1.5rem 0 0; padding: 1rem; border-top: 1px solid rgba(245,233,218,0.2); }
+
+/* ---------- 12. ANIMATION (bonus) ---------- */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ---------- 13. DARK MODE (bonus) ---------- */
+@media (prefers-color-scheme: dark) {
+  body { background-color: #1B110B; color: var(--cream); }
+  h1, h2, h3 { color: var(--orange); }
+  a { color: var(--orange); }
+  .card, .menu-table, blockquote, .gallery-grid figure { background-color: #2B1B12; color: var(--cream); }
+  .menu-table tbody tr:nth-child(even) { background-color: #3A271B; }
+  .menu-table tbody tr:hover { background-color: #4A3324; }
+  .site-header .nav-list a, .hero h1, .cta-band h2 { color: var(--white); }
+  blockquote cite { color: var(--orange); }
+}
+
+/* ---------- 14. RESPONSIVE ---------- */
+/* Tablet: gallery drops to 2 columns */
+@media (max-width: 1024px) {
+  .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* Phone and small tablet */
+@media (max-width: 768px) {
+  .header-inner { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+  .nav-list { flex-direction: column; width: 100%; gap: 0.25rem; }   /* links stack under logo */
+  .hero h1 { font-size: 2.25rem; }
+  .hero { min-height: 360px; }
+  .cards, .two-col, .footer-columns { flex-direction: column; }
+  .round-img { margin: 0 auto; max-width: 280px; }
+  .contact-layout { flex-direction: column; }   /* form stays first in the HTML */
+  .form-row { flex-direction: column; gap: 0; }
+  .gallery-grid { grid-template-columns: 1fr; }
+}
+
+/* ---------- 15. EXTRAS (accessibility, events, map) ---------- */
+/* Skip link: visible only when focused with the keyboard */
+.skip-link {
+  position: absolute;
+  left: -999px;
+  top: 0;
+  background: var(--orange);
+  color: var(--white);
+  padding: 0.5rem 1rem;
+  z-index: 100;
+}
+.skip-link:focus { left: 0; color: var(--white); }
+
+.page-intro p { margin-top: 0; }
+.h3 { font-size: 1.4rem; margin: 0.25rem 0 0.5rem; }
+.event-tag {
+  display: inline-block;
+  margin: 0;
+  padding: 0.15rem 0.75rem;
+  background-color: var(--orange);
+  color: var(--white);
+  border-radius: 999px;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+.events-cards { margin-bottom: 2rem; }
+.map { width: 100%; height: 260px; border: 2px solid var(--brown); border-radius: var(--radius); }
+.hours-table th, .hours-table td { padding: 0.6rem 0.75rem; }
+
+/* Respect users who prefer less motion */
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+}
+
+@media (max-width: 768px) {
+  .events-cards { flex-direction: column; }
+}
